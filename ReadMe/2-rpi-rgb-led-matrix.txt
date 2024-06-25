@@ -1,0 +1,30 @@
+#rpi-rgb-led-matrix library installation
+#you can install everything with a single paste
+#copy everything except the comments (#) and hit ENTER
+#to a correct installation 'git' must be installed
+
+
+sudo apt-get update
+
+sudo apt install libgraphicsmagick++-dev libwebp-dev
+sudo apt install libwebp-dev
+
+sudo apt install python2.7-dev -y
+sudo apt install python3-dev python3-pillow -y
+
+
+git clone https://github.com/hzeller/rpi-rgb-led-matrix
+
+
+cd rpi-rgb-led-matrix
+sudo HARDWARE_DESC=regular make install-python
+
+cd utils/
+sudo make led-image-viewer
+
+cd ../examples-api-use
+make
+
+cd ../bindings/python/
+sudo make build-python PYTHON=$(which python3)
+sudo make install-python PYTHON=$(which python3)

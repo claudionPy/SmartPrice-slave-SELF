@@ -1,0 +1,24 @@
+#to create the service file follow the steps
+#on the terminal copy:
+sudo nano /etc/systemd/system/smartprice.service
+
+#paste the following lines as you see them
+
+[Unit]
+Description=SmartPrice Client Device
+After=network.target
+
+[Service]
+Type=simple
+User=raspberry
+Group=www-data
+WorkingDirectory=/home/raspberry/SmartPrice
+Environment="PATH=/home/raspberry/SmartPrice/venv/bin:$PATH"
+ExecStart=/home/raspberry/SmartPrice/venv/bin/python /home/raspberry/SmartPrice/main.py
+
+[Install]
+WantedBy=multi-user.target
+
+#save the file and enable the service
+#to enable the service: sudo systemctl enable smartprice.service
+#to start the service: sudo systemctl start smartprice.service
